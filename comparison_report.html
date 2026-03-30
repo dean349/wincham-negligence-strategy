@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Philip Harrison — The True Cost of Wincham's Advice</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070d1a;
+  --surface:#0f1826;
+  --card:#131f30;
+  --border:rgba(255,255,255,0.07);
+  --gold:#f5c842;
+  --green:#22c55e;
+  --red:#ef4444;
+  --orange:#f97316;
+  --muted:#94a3b8;
+  --text:#e2e8f0;
+  --r:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+.hero{padding:70px 24px 60px;text-align:center;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(59,130,246,.15) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(34,197,94,.08) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(239,68,68,.08) 0%,transparent 60%),var(--bg)}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3);border-radius:999px;padding:5px 16px;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+.hero h1 .hi{background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .accent{background:linear-gradient(135deg,var(--gold),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--muted);font-size:1.1rem;max-width:620px;margin:0 auto 48px}
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto}
+.v-card{border-radius:var(--r);padding:28px 32px;text-align:center}
+.v-card.good{background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(34,197,94,.05));border:1px solid rgba(34,197,94,.3)}
+.v-card.bad{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(239,68,68,.05));border:1px solid rgba(239,68,68,.3)}
+.v-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.v-card.good .v-label{color:var(--green)}
+.v-card.bad .v-label{color:var(--red)}
+.v-title{font-size:.85rem;color:var(--muted);margin-bottom:14px;line-height:1.4}
+.v-amount{font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1}
+.v-card.good .v-amount{color:var(--green)}
+.v-card.bad .v-amount{color:var(--red)}
+.v-sub{font-size:.8rem;color:var(--muted);margin-top:8px}
+.penalty{max-width:800px;margin:20px auto 0;background:linear-gradient(135deg,rgba(245,200,66,.12),rgba(249,115,22,.08));border:1px solid rgba(245,200,66,.35);border-radius:var(--r);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.penalty-text{font-size:.95rem;color:var(--muted)}
+.penalty-text strong{color:var(--text);font-size:1.05rem;display:block;margin-bottom:2px}
+.penalty-amount{font-family:'Outfit',sans-serif;font-size:2.4rem;font-weight:900;color:var(--gold);white-space:nowrap}
+.myth{max-width:800px;margin:20px auto 0;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--r);padding:20px 28px}
+.myth-title{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.myth-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:12px}
+.myth-item{text-align:center}
+.myth-val{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800}
+.myth-val.save{color:var(--green)}
+.myth-val.cost{color:var(--red)}
+.myth-val.net{color:var(--gold)}
+.myth-lbl{font-size:.75rem;color:var(--muted);margin-top:4px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:60px 0 24px}
+.sec-icon{font-size:1.75rem;flex-shrink:0}
+.sec-head h2{font-family:'Outfit',sans-serif;font-size:1.55rem;font-weight:700}
+.divider{height:1px;background:linear-gradient(90deg,var(--border),transparent);margin-bottom:28px}
+.cmp-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.cmp-cell{padding:14px 18px;font-size:.88rem;border-bottom:1px solid var(--border)}
+.cmp-header{background:var(--card);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cmp-row{display:contents}
+.cmp-row .cmp-cell:nth-child(1){background:var(--surface);color:var(--text);font-weight:500}
+.cmp-row .cmp-cell:nth-child(2){background:rgba(34,197,94,.05);color:var(--green)}
+.cmp-row .cmp-cell:nth-child(3){background:rgba(239,68,68,.05);color:var(--red)}
+.cmp-row.total .cmp-cell{font-weight:800;font-size:1rem;padding:18px}
+.cmp-row.total .cmp-cell:nth-child(2){color:var(--green);font-size:1.15rem}
+.cmp-row.total .cmp-cell:nth-child(3){color:var(--red);font-size:1.15rem}
+.cmp-row.neutral .cmp-cell:nth-child(2),.cmp-row.neutral .cmp-cell:nth-child(3){color:var(--muted)}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.chart-card h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:18px}
+.chart-card h3 span.g{color:var(--green)}
+.chart-card h3 span.r{color:var(--red)}
+canvas{max-height:280px}
+.waterfall{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.wf-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.wf-col.wf-good{border-top:3px solid var(--green)}
+.wf-col.wf-bad{border-top:3px solid var(--red)}
+.wf-col-title{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:20px}
+.wf-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.875rem}
+.wf-row:last-child{border-bottom:none;padding-top:14px;margin-top:8px;font-weight:800;font-size:1rem}
+.wf-label{color:var(--muted)}
+.wf-val{font-family:'Outfit',sans-serif;font-weight:600}
+.wf-val.pos{color:var(--text)}
+.wf-val.neg{color:var(--red)}
+.wf-val.zero{color:var(--green)}
+.wf-val.result-g{color:var(--green);font-size:1.2rem}
+.wf-val.result-r{color:var(--red);font-size:1.2rem}
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.layer-col{display:flex;flex-direction:column;gap:12px}
+.layer-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;align-items:flex-start;gap:14px}
+.layer-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;margin-top:1px}
+.layer-num.g{background:rgba(34,197,94,.2);color:var(--green)}
+.layer-num.r{background:rgba(239,68,68,.2);color:var(--red)}
+.layer-body h4{font-size:.88rem;font-weight:600;margin-bottom:3px}
+.layer-body p{font-size:.8rem;color:var(--muted);line-height:1.5}
+.layer-amount{margin-left:auto;font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;text-align:right;flex-shrink:0}
+.layer-amount.ok{color:var(--green)}
+.layer-amount.cost{color:var(--red)}
+.conclusion{background:linear-gradient(135deg,rgba(245,200,66,.1),rgba(249,115,22,.06));border:1px solid rgba(245,200,66,.3);border-radius:var(--r);padding:32px 36px;margin-top:24px}
+.conclusion h3{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gold);margin-bottom:16px}
+.conclusion p{color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:12px}
+.conclusion p:last-child{margin-bottom:0}
+.conclusion strong{color:var(--text)}
+.note{font-size:.78rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:28px;line-height:1.7}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted)}
+@media(max-width:700px){
+  .verdict,.chart-grid,.waterfall,.layers,.myth-grid{grid-template-columns:1fr}
+  .cmp-grid{display:flex;flex-direction:column}
+  .cmp-row{display:flex;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="badge">📊 Philip Harrison · Los Romeros Ltd · Lanzarote 2026</div>
+  <h1><span class="hi">The True Cost of</span><br/><span class="accent">Wincham's Advice</span></h1>
+  <p class="hero-sub">A complete, like-for-like comparison showing exactly how much Philip receives after every tax — personal ownership versus the Wincham company route.</p>
+  <div class="verdict">
+    <div class="v-card good">
+      <div class="v-label">✅ Scenario A</div>
+      <div class="v-title">Property held personally<br/>Bought June 2019 · Sold March 2026</div>
+      <div class="v-amount">£243,358</div>
+      <div class="v-sub">Net cash into Philip's personal account</div>
+    </div>
+    <div class="v-card bad">
+      <div class="v-label">❌ Scenario B — Wincham Route</div>
+      <div class="v-title">Property in Los Romeros Ltd<br/>Bought June 2019 · Sold March 2026</div>
+      <div class="v-amount">£183,264</div>
+      <div class="v-sub">Net cash into Philip's personal account</div>
+    </div>
+  </div>
+  <div class="penalty">
+    <div class="penalty-text"><strong>The Wincham Financial Penalty</strong>Philip is worse off by this exact amount because of the company structure</div>
+    <div class="penalty-amount">−£60,094</div>
+  </div>
+  <div class="myth">
+    <div class="myth-title">⚠️ The Wincham "16% Saving" Myth — Exposed</div>
+    <p style="font-size:.85rem;color:var(--muted)">Wincham told Philip he would save money by buying the company instead of the property directly. Here is what that "saving" actually cost.</p>
+    <div class="myth-grid">
+      <div class="myth-item"><div class="myth-val save">+£10,702</div><div class="myth-lbl">Spanish ITP saved in 2019<br/>by buying the company shell</div></div>
+      <div class="myth-item"><div class="myth-val cost">−£60,094</div><div class="myth-lbl">Extra tax &amp; costs on extraction<br/>due to corporate wrapper</div></div>
+      <div class="myth-item"><div class="myth-val net">−£49,392</div><div class="myth-lbl">TRUE net financial harm<br/>after crediting the ITP saving</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="sec-head"><div class="sec-icon">💧</div><h2>Where Every Pound Goes — Step by Step</h2></div>
+  <div class="divider"></div>
+  <div class="waterfall">
+    <div class="wf-col wf-good">
+      <div class="wf-col-title" style="color:var(--green)">✅ Scenario A: Personal Route</div>
+      <div class="wf-row"><span class="wf-label" style="font-weight:700;color:var(--text)">Gross Sale Price</span><span class="wf-val pos">£273,105</span></div>
+      <div class="wf-row"><span class="wf-label">Spanish Agent &amp; Legal Costs</span><span class="wf-val neg">−£14,410</span></div>
+      <div class="wf-row"><span class="wf-label">Spanish IRNR Tax @ 19%</span><span class="wf-val neg">−£15,337</span></div>
+      <div class="wf-row"><span class="wf-label">UK Personal CGT (net of FTCR)</span><span class="wf-val zero">£0 ✓ wiped</span></div>
+      <div class="wf-row"><span class="wf-label">Company Extraction / MVL</span><span class="wf-val zero">N/A — not needed</span></div>
+      <div class="wf-row"><span class="wf-label">Personal CGT on Distribution</span><span class="wf-val zero">N/A — not needed</span></div>
+      <div class="wf-row"><span class="wf-label" style="color:var(--text);font-weight:700">PHILIP RECEIVES</span><span class="wf-val result-g">£243,358</span></div>
+    </div>
+    <div class="wf-col wf-bad">
+      <div class="wf-col-title" style="color:var(--red)">❌ Scenario B: Wincham Company Route</div>
+      <div class="wf-row"><span class="wf-label" style="font-weight:700;color:var(--text)">Gross Sale Price</span><span class="wf-val pos">£273,105</span></div>
+      <div class="wf-row"><span class="wf-label">Spanish Agent &amp; Legal Costs</span><span class="wf-val neg">−£14,410</span></div>
+      <div class="wf-row"><span class="wf-label">Spanish IRNR Tax @ 19%</span><span class="wf-val neg">−£15,337</span></div>
+      <div class="wf-row"><span class="wf-label">UK Corporation Tax (net of FTCR)</span><span class="wf-val neg">−£8,562</span></div>
+      <div class="wf-row"><span class="wf-label">MVL Insolvency Practitioner + CTA</span><span class="wf-val neg">−£5,500</span></div>
+      <div class="wf-row"><span class="wf-label">Personal CGT on MVL Distribution</span><span class="wf-val neg">−£46,033</span></div>
+      <div class="wf-row"><span class="wf-label" style="color:var(--text);font-weight:700">PHILIP RECEIVES</span><span class="wf-val result-r">£183,264</span></div>
+    </div>
+  </div>
+
+  <div class="note"><strong>Note on Director's Loan (£25,069):</strong> In Scenario B, Philip also receives his £25,069 Director's Loan back tax-free as part of the MVL distribution. This is already included in the £183,264 figure. It is not a gain — it is the company repaying money Philip injected for running costs over the years. Scenario A does not include an equivalent, as Philip would not have incurred those corporate running costs.</div>
+
+  <div class="sec-head" style="margin-top:60px"><div class="sec-icon">📊</div><h2>Visual Comparison</h2></div>
+  <div class="divider"></div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Money Waterfall — <span class="g">Personal</span> vs <span class="r">Company</span></h3><canvas id="waterfallChart"></canvas></div>
+    <div class="chart-card"><h3>Tax Layers — Where Did the Money Go?</h3><canvas id="stackChart"></canvas></div>
+  </div>
+  <div class="chart-grid" style="margin-top:24px">
+    <div class="chart-card"><h3><span class="g">Scenario A</span> — Personal Route: How £273,105 is Split</h3><canvas id="pieA"></canvas></div>
+    <div class="chart-card"><h3><span class="r">Scenario B</span> — Company Route: How £273,105 is Split</h3><canvas id="pieB"></canvas></div>
+  </div>
+
+  <div class="sec-head" style="margin-top:60px"><div class="sec-icon">📋</div><h2>Full Tax-by-Tax Comparison</h2></div>
+  <div class="divider"></div>
+  <div class="cmp-grid">
+    <div class="cmp-cell cmp-header">Tax / Cost Item</div>
+    <div class="cmp-cell cmp-header" style="color:var(--green)">✅ Scenario A — Personal</div>
+    <div class="cmp-cell cmp-header" style="color:var(--red)">❌ Scenario B — Company</div>
+    <div class="cmp-row neutral"><div class="cmp-cell">Gross Sale Proceeds (€315,000)</div><div class="cmp-cell">£273,105</div><div class="cmp-cell">£273,105</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Spanish Agent + Legal + Plusvalía</div><div class="cmp-cell">−£14,410</div><div class="cmp-cell">−£14,410</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Spanish IRNR Tax @ 19%</div><div class="cmp-cell">−£15,337</div><div class="cmp-cell">−£15,337</div></div>
+    <div class="cmp-row"><div class="cmp-cell">UK Corporation Tax (net of FTCR)</div><div class="cmp-cell" style="color:var(--green)">£0 — Not applicable</div><div class="cmp-cell">−£8,562</div></div>
+    <div class="cmp-row"><div class="cmp-cell">UK Personal CGT (Self Assessment)</div><div class="cmp-cell" style="color:var(--green)">£0 — Wiped by FTCR</div><div class="cmp-cell" style="color:var(--muted)">N/A at this stage</div></div>
+    <div class="cmp-row"><div class="cmp-cell">MVL Insolvency Practitioner Fee</div><div class="cmp-cell" style="color:var(--green)">£0 — Not needed</div><div class="cmp-cell">−£3,500</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Final CTA / Accountant (MVL)</div><div class="cmp-cell" style="color:var(--green)">£0 — Not needed</div><div class="cmp-cell">−£2,000</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Personal CGT on MVL Distribution (18/24%)</div><div class="cmp-cell" style="color:var(--green)">£0 — Not needed</div><div class="cmp-cell">−£46,033</div></div>
+    <div class="cmp-row total"><div class="cmp-cell" style="color:var(--text)">🏦 NET CASH TO PHILIP</div><div class="cmp-cell">£243,358</div><div class="cmp-cell">£183,264</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Total Tax &amp; Costs Paid</div><div class="cmp-cell" style="color:var(--green)">£29,747</div><div class="cmp-cell" style="color:var(--red)">£89,842</div></div>
+    <div class="cmp-row"><div class="cmp-cell">Effective Overall Tax Rate</div><div class="cmp-cell" style="color:var(--green)">10.9%</div><div class="cmp-cell" style="color:var(--red)">32.9%</div></div>
+  </div>
+
+  <div class="sec-head" style="margin-top:60px"><div class="sec-icon">🔬</div><h2>Why Scenario A Has Near-Zero UK Tax — The FTCR Mechanism</h2></div>
+  <div class="divider"></div>
+  <div class="layers">
+    <div class="layer-col">
+      <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:4px">✅ Scenario A — Personal Route</div>
+      <div class="layer-item"><div class="layer-num g">1</div><div class="layer-body"><h4>Spain charges IRNR on the gain</h4><p>Philip pays €17,689 (~£15,337) to AEAT as Spanish non-resident CGT on the €93,100 gain.</p></div><div class="layer-amount cost">−£15,337</div></div>
+      <div class="layer-item"><div class="layer-num g">2</div><div class="layer-body"><h4>UK Self Assessment calculates personal CGT</h4><p>Gross CGT on UK gain: blended 18%/24% for basic-rate taxpayer ≈ £15,279.</p></div><div class="layer-amount cost">£15,279 gross</div></div>
+      <div class="layer-item"><div class="layer-num g">3</div><div class="layer-body"><h4>FTCR wipes the UK CGT bill entirely</h4><p>Foreign Tax Credit Relief (TIOPA 2010) credits the £15,337 Spanish tax against the £15,279 UK bill. Spanish tax exceeds UK CGT — UK liability = £0.</p></div><div class="layer-amount ok">£0 net</div></div>
+      <div class="layer-item"><div class="layer-num g">4</div><div class="layer-body"><h4>Money is already personal — done</h4><p>No company to dissolve. No MVL. No additional CGT layer. Philip's money is in his account.</p></div><div class="layer-amount ok">✓ Complete</div></div>
+    </div>
+    <div class="layer-col">
+      <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:4px">❌ Scenario B — Wincham Company Route</div>
+      <div class="layer-item"><div class="layer-num r">1</div><div class="layer-body"><h4>Spain charges IRNR on the gain</h4><p>Company pays €17,689 (~£15,337) to AEAT. Identical to Scenario A at this stage.</p></div><div class="layer-amount cost">−£15,337</div></div>
+      <div class="layer-item"><div class="layer-num r">2</div><div class="layer-body"><h4>UK Corporation Tax — partially offset by FTCR</h4><p>CT at 25% on the UK gain = £23,899. FTCR credits £15,337. Net CT = £8,562. Cannot be avoided.</p></div><div class="layer-amount cost">−£8,562</div></div>
+      <div class="layer-item"><div class="layer-num r">3</div><div class="layer-body"><h4>Money trapped — MVL required</h4><p>Licensed Insolvency Practitioner + final accountant fees to legally dissolve the company and distribute assets to Philip.</p></div><div class="layer-amount cost">−£5,500</div></div>
+      <div class="layer-item"><div class="layer-num r">4</div><div class="layer-body"><h4>Personal CGT on MVL distribution</h4><p>The capital distribution triggers CGT at 18%/24%. On £201,227 taxable gain: £46,033 to HMRC. No FTCR available at this stage.</p></div><div class="layer-amount cost">−£46,033</div></div>
+    </div>
+  </div>
+
+  <div class="conclusion">
+    <h3>📌 The Core Finding</h3>
+    <p>Both scenarios start with the <strong>same property, the same sale price (€315,000), and the same Spanish tax bill</strong>. The only difference is the ownership structure.</p>
+    <p>In Scenario A (personal), the Foreign Tax Credit Relief mechanism works <strong>perfectly</strong> — the Spanish tax paid almost completely cancels out the UK tax bill. Philip pays one layer of tax and keeps <strong>£243,358</strong>.</p>
+    <p>In Scenario B (company), the FTCR does work at the corporate level — but the money must then be extracted through <strong>two further tax events</strong> (Corporation Tax top-up + personal CGT on MVL) that would never have existed in a personal ownership structure. Philip ultimately keeps <strong>£183,264</strong>.</p>
+    <p>Wincham's claimed "saving" of approximately <strong>£10,702</strong> in Spanish purchase taxes (ITP) in 2019 has been comprehensively wiped out — resulting in a net financial harm to Philip of <strong>approximately £49,392</strong> after accounting for that upfront saving.</p>
+    <p>The effective tax rate on the personally-held property was <strong>10.9%</strong>. The effective rate through the company structure was <strong>32.9%</strong> — three times higher.</p>
+  </div>
+
+  <div class="note"><strong>Disclaimer:</strong> All figures are planning estimates. The Spanish IRNR calculation assumes an acquisition cost of €201,280 (€185,000 + ITP 6.5% + AJD 1% + fees) and disposal costs of €16,620. UK figures use EUR/GBP @ £0.867 (March 2026) and £0.89 (June 2019). Philip's retirement income is assumed near the Personal Allowance (£12,570). These figures require verification by a CIOT-registered Chartered Tax Adviser and a qualified Spanish asesor fiscal before any formal filing or legal proceedings.</div>
+</div>
+
+<footer><strong>Los Romeros Limited — Philip Harrison · Lanzarote Repatriation Project</strong><br/>Prepared by AI Advisory Team · All figures are estimates for planning purposes only.</footer>
+
+<script>
+Chart.defaults.color='#94a3b8';
+Chart.defaults.font.family='Inter,sans-serif';
+new Chart(document.getElementById('waterfallChart').getContext('2d'),{type:'bar',data:{labels:['Gross Proceeds','After Spanish Costs','After IRNR','After Corp Tax','After MVL Costs','Philip Receives'],datasets:[{label:'Scenario A (Personal)',data:[273105,258695,243358,243358,243358,243358],backgroundColor:'rgba(34,197,94,0.7)',borderColor:'#22c55e',borderWidth:1,borderRadius:4},{label:'Scenario B (Company)',data:[273105,258695,243358,234796,229296,183264],backgroundColor:'rgba(239,68,68,0.7)',borderColor:'#ef4444',borderWidth:1,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14,font:{size:11}}},tooltip:{callbacks:{label:ctx=>` £${ctx.raw.toLocaleString()}`}}},scales:{y:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{callback:v=>'£'+(v/1000).toFixed(0)+'k'}},x:{grid:{display:false}}}}});
+new Chart(document.getElementById('stackChart').getContext('2d'),{type:'bar',data:{labels:['Scenario A (Personal)','Scenario B (Company)'],datasets:[{label:'Philip Keeps',data:[243358,183264],backgroundColor:['rgba(34,197,94,0.8)','rgba(239,68,68,0.7)']},{label:'Spanish IRNR',data:[15337,15337],backgroundColor:'rgba(245,200,66,0.8)'},{label:'Disposal Costs',data:[14410,14410],backgroundColor:'rgba(100,116,139,0.7)'},{label:'UK Corp Tax',data:[0,8562],backgroundColor:'rgba(249,115,22,0.8)'},{label:'MVL Costs',data:[0,5500],backgroundColor:'rgba(139,92,246,0.8)'},{label:'Personal CGT (MVL)',data:[0,46033],backgroundColor:'rgba(220,38,38,0.85)'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:10,font:{size:10}}},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: £${ctx.raw.toLocaleString()}`}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(255,255,255,0.06)'},ticks:{callback:v=>'£'+(v/1000).toFixed(0)+'k'}}}}});
+new Chart(document.getElementById('pieA').getContext('2d'),{type:'doughnut',data:{labels:['Philip Keeps (89.1%)','Spanish IRNR (5.6%)','Disposal Costs (5.3%)'],datasets:[{data:[243358,15337,14410],backgroundColor:['#22c55e','#f5c842','#475569'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:10,font:{size:10}}},tooltip:{callbacks:{label:ctx=>` £${ctx.raw.toLocaleString()}`}}}}});
+new Chart(document.getElementById('pieB').getContext('2d'),{type:'doughnut',data:{labels:['Philip Keeps (67.1%)','Personal CGT on MVL (16.9%)','Spanish IRNR (5.6%)','Disposal Costs (5.3%)','UK Corp Tax (3.1%)','MVL Costs (2.0%)'],datasets:[{data:[183264,46033,15337,14410,8562,5500],backgroundColor:['#ef4444','#dc2626','#f5c842','#475569','#f97316','#8b5cf6'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:10,font:{size:10}}},tooltip:{callbacks:{label:ctx=>` £${ctx.raw.toLocaleString()}`}}}}});
+</script>
+</body>
+</html>

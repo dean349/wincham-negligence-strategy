@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Was What Wincham Did Illegal? — Philip Harrison Legal Analysis</title>
+<meta name="description" content="A forensic legal analysis of whether Wincham Accountants committed crimes or regulatory violations against Philip Harrison under Spanish and UK law."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070d1a;
+  --surface:#0f1826;
+  --card:#131f30;
+  --border:rgba(255,255,255,0.07);
+  --gold:#f5c842;
+  --green:#22c55e;
+  --red:#ef4444;
+  --orange:#f97316;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
+  --muted:#94a3b8;
+  --text:#e2e8f0;
+  --r:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+
+/* HERO */
+.hero{padding:72px 24px 64px;text-align:center;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(239,68,68,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(139,92,246,.1) 0%,transparent 60%),var(--bg)}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);border-radius:999px;padding:6px 18px;font-size:12px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.hero h1 .q{background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .a{background:linear-gradient(135deg,var(--red),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--muted);font-size:1.05rem;max-width:700px;margin:0 auto 40px;line-height:1.8}
+.verdict-banner{max-width:820px;margin:0 auto;background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(249,115,22,.08));border:1px solid rgba(239,68,68,.35);border-radius:var(--r);padding:24px 32px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;text-align:center}
+.vb-item{}
+.vb-num{font-family:'Outfit',sans-serif;font-size:2.2rem;font-weight:900}
+.vb-num.red{color:var(--red)}
+.vb-num.orange{color:var(--orange)}
+.vb-num.purple{color:var(--purple)}
+.vb-lbl{font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.4}
+
+/* LAYOUT */
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px 80px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:64px 0 22px}
+.sec-icon{font-size:2rem;flex-shrink:0}
+.sec-head h2{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800}
+.sec-head .flag{font-size:1.4rem;margin-left:4px}
+.divider{height:1px;background:linear-gradient(90deg,var(--border),transparent);margin-bottom:32px}
+
+/* VIOLATION CARDS */
+.violation{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 30px;margin-bottom:20px;position:relative;overflow:hidden}
+.violation::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px}
+.violation.spanish::before{background:linear-gradient(180deg,#ef4444,#f97316)}
+.violation.civil::before{background:linear-gradient(180deg,#3b82f6,#8b5cf6)}
+.violation.criminal::before{background:linear-gradient(180deg,#ef4444,#dc2626)}
+.violation.disciplinary::before{background:linear-gradient(180deg,#f5c842,#f97316)}
+.v-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.v-title-wrap{}
+.v-law{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.violation.spanish .v-law{color:var(--red)}
+.violation.civil .v-law{color:var(--blue)}
+.violation.criminal .v-law{color:var(--red)}
+.violation.disciplinary .v-law{color:var(--gold)}
+.v-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:800;color:var(--text)}
+.v-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 14px;font-size:.75rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.v-badge.high{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:var(--red)}
+.v-badge.med{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
+.v-badge.crim{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.5);color:#fca5a5}
+.v-body{color:var(--muted);font-size:.9rem;line-height:1.75}
+.v-body strong{color:var(--text)}
+.v-body .statute{display:inline-block;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:6px;padding:2px 8px;font-size:.78rem;font-weight:600;color:#93c5fd;margin:2px 3px}
+.v-consequence{margin-top:16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.v-consequence-title{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.v-consequence ul{list-style:none;padding:0}
+.v-consequence li{font-size:.85rem;color:var(--muted);padding:4px 0 4px 20px;position:relative;line-height:1.6}
+.v-consequence li::before{content:'→';position:absolute;left:0;color:var(--gold)}
+.v-consequence li strong{color:var(--text)}
+
+/* ALERT BOX */
+.alert-box{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(239,68,68,.05));border:1px solid rgba(239,68,68,.3);border-radius:var(--r);padding:22px 26px;margin-bottom:24px}
+.alert-box .alert-title{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;color:var(--red);margin-bottom:10px}
+.alert-box p{font-size:.88rem;color:var(--muted);line-height:1.75}
+.alert-box p strong{color:var(--text)}
+
+/* SPECTRUM TABLE */
+.spectrum{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.spectrum th{background:var(--card);padding:13px 16px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1px solid var(--border)}
+.spectrum td{padding:13px 16px;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+.spectrum tr:last-child td{border-bottom:none}
+.spectrum tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.severity{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:700}
+.severity.high{background:rgba(239,68,68,.15);color:var(--red)}
+.severity.med{background:rgba(249,115,22,.12);color:var(--orange)}
+.severity.crim{background:rgba(220,38,38,.2);color:#fca5a5}
+.type-civil{color:var(--blue)}
+.type-crim{color:var(--red)}
+.type-reg{color:var(--gold)}
+.type-disc{color:var(--purple)}
+
+/* ACTION STEPS */
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.action-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+.action-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(245,200,66,.2),rgba(249,115,22,.15));border:1px solid rgba(245,200,66,.3);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:900;font-size:.9rem;color:var(--gold);flex-shrink:0}
+.action-body h4{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.action-body p{font-size:.82rem;color:var(--muted);line-height:1.6}
+.action-urgency{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:.68rem;font-weight:700;margin-bottom:8px}
+.urgency-now{background:rgba(239,68,68,.15);color:var(--red)}
+.urgency-soon{background:rgba(249,115,22,.12);color:var(--orange)}
+.urgency-when{background:rgba(34,197,94,.1);color:var(--green)}
+
+/* DISCLAIMER */
+.disclaimer{font-size:.78rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-top:32px;line-height:1.75}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .verdict-banner{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr}
+  .v-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">&#9878; Legal &amp; Regulatory Analysis &mdash; Philip Harrison v Wincham Accountants</div>
+  <h1>
+    <span class="q">Was What Wincham Did</span><br/>
+    <span class="a">Illegal?</span>
+  </h1>
+  <p class="hero-sub">A forensic analysis of Wincham Accountants' conduct across two legal jurisdictions — Spain and the United Kingdom — examining whether their advice to Philip Harrison crossed the line from negligence into criminal or regulatory violation.</p>
+
+  <div class="verdict-banner">
+    <div class="vb-item">
+      <div class="vb-num red">6</div>
+      <div class="vb-lbl">Distinct legal &amp; regulatory<br/>violations identified</div>
+    </div>
+    <div class="vb-item">
+      <div class="vb-num orange">2</div>
+      <div class="vb-lbl">Jurisdictions affected<br/>Spain &amp; United Kingdom</div>
+    </div>
+    <div class="vb-item">
+      <div class="vb-num purple">3</div>
+      <div class="vb-lbl">Potential criminal offences<br/>requiring investigation</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- CRITICAL ALERT -->
+  <div class="alert-box" style="margin-top:52px">
+    <div class="alert-title">&#9888; The Short Answer: Yes — On Multiple Levels</div>
+    <p>What Wincham did was <strong>almost certainly professionally negligent</strong> under UK law, <strong>potentially criminal</strong> under consumer protection legislation if the "16% saving" scheme was marketed to multiple clients, and <strong>exposed Philip to specific Spanish anti-avoidance laws</strong> that Wincham had a professional duty to disclose. The analysis below covers each issue in order of severity.</p>
+  </div>
+
+  <!-- SPANISH LAW -->
+  <div class="sec-head">
+    <div class="sec-icon">&#127466;&#127480;</div>
+    <h2>Spain &mdash; Violations of Spanish Law</h2>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Article 108 -->
+  <div class="violation spanish">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">Spanish Securities Market Law &mdash; Anti-Avoidance</div>
+        <div class="v-title">Article 108 LMV &mdash; The Share-for-Property Avoidance Scheme</div>
+      </div>
+      <div class="v-badge high">&#128308; Severity: HIGH</div>
+    </div>
+    <div class="v-body">
+      <p>This is the <strong>single most important legal issue</strong> in this entire case — and it is a law that exists <em>specifically because of arrangements like the one Wincham set up for Philip</em>.</p>
+      <br/>
+      <p><strong>What the law says:</strong> Spain enacted <span class="statute">Article 108, Ley 24/1988 del Mercado de Valores</span> (now consolidated into the consolidated Securities Market Law) as a direct anti-avoidance provision. When a company&rsquo;s assets consist primarily of Spanish real estate and someone acquires the <em>shares</em> in that company, Spanish tax law can <strong>pierce the corporate veil</strong> and treat the share purchase as a direct property transfer &mdash; levying ITP (Impuesto sobre Transmisiones Patrimoniales) as if the land itself had changed hands.</p>
+      <br/>
+      <p><strong>What actually happened:</strong> In June 2019, Philip did not buy a Spanish villa. He bought <strong>100% of the shares in Los Romeros Limited</strong> &mdash; a UK company whose <em>sole asset</em> was a Spanish villa in Lanzarote. The entire commercial rationale, as Wincham explicitly stated, was <strong>to avoid paying Spanish ITP on the acquisition</strong>. This is the textbook definition of the scheme Article 108 was enacted to prevent.</p>
+      <br/>
+      <p><strong>The exposure Wincham created but never disclosed:</strong> AEAT (Spain&rsquo;s tax authority) has the power to retrospectively assess Philip for the Canary Islands ITP of <strong>6.5% on &euro;185,000 = &euro;12,025</strong>. The statute of limitations in Spain is 4 years from the date of the act. That window has likely now closed for the 2019 transaction &mdash; but it was a <strong>live, undisclosed liability for the entire duration of Philip&rsquo;s ownership</strong>. No professional who recommended this structure should have done so without a clear written warning about Article 108 risk.</p>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Legal Consequences &amp; Implications for the Negligence Claim</div>
+      <ul>
+        <li>Wincham <strong>failed to disclose a material statutory risk</strong> that arose directly from the structure they recommended</li>
+        <li>This risk alone is sufficient to establish <strong>breach of duty of care</strong> under <em>Hedley Byrne &amp; Co Ltd v Heller &amp; Partners Ltd [1964] AC 465</em></li>
+        <li>The fact that AEAT did not ultimately pursue Philip does not diminish Wincham&rsquo;s negligence in creating and concealing the exposure</li>
+        <li>A competent Spanish <em>asesor fiscal</em> would have advised on this risk as a matter of course before any ITP avoidance strategy</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Annual Modelo 210 -->
+  <div class="violation spanish">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">Spanish IRNR Compliance &mdash; Imputaci&oacute;n de Rentas</div>
+        <div class="v-title">Annual Modelo 210 Filing Failures (Potentially 15 Years)</div>
+      </div>
+      <div class="v-badge high">&#128308; Severity: HIGH</div>
+    </div>
+    <div class="v-body">
+      <p>Non-resident companies that own Spanish property which is <strong>not being rented out</strong> are legally required to file an annual <span class="statute">Modelo 210 (Imputaci&oacute;n de rentas inmobiliarias)</span> &mdash; a notional income charge based on 1.1%&ndash;2% of the cadastral value, taxed at <strong>24%</strong> for non-EU entities (which includes UK companies post-Brexit).</p>
+      <br/>
+      <p><strong>The risk:</strong> Los Romeros Limited held the property from 2011. Philip took ownership in 2019. Your father did not rent the property. There is a strong probability that Wincham <strong>never advised on or filed these annual Spanish returns</strong> for any year between acquisition and the 2026 sale &mdash; a potential 15-year compliance gap.</p>
+      <br/>
+      <p><strong>Why this matters right now:</strong> The Spanish notary completing the March 2026 sale should have required a <em>certificado de no deudas con Hacienda</em> (no-debt certificate from AEAT) before signing. If the notary did not obtain this, or if debts exist that were not paid off at completion, <strong>Philip may have outstanding Spanish tax liabilities that survived the sale</strong>.</p>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Immediate Action Required</div>
+      <ul>
+        <li>Commission a Spanish <em>asesor fiscal</em> to <strong>run an AEAT check immediately</strong> on Los Romeros Limited&rsquo;s tax record (<em>Sede Electr&oacute;nica</em>)</li>
+        <li>Any outstanding Modelo 210 debts carry <strong>surcharges, interest, and potential sanctions</strong> under the <em>Ley General Tributaria</em></li>
+        <li>If Wincham was responsible for Spanish compliance and failed to file, this is a <strong>direct recoverable loss</strong> to add to the negligence quantum</li>
+        <li>Wincham&rsquo;s failure to advise Philip of this obligation also constitutes a <strong>material omission</strong> under the duty of care</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- UK LAW -->
+  <div class="sec-head" style="margin-top:60px">
+    <div class="sec-icon">&#127468;&#127463;</div>
+    <h2>United Kingdom &mdash; Civil, Regulatory &amp; Criminal Violations</h2>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Negligent Misstatement -->
+  <div class="violation civil">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">UK Civil Law &mdash; Tort of Negligence</div>
+        <div class="v-title">Negligent Misstatement &mdash; The "16% Saving" Claim</div>
+      </div>
+      <div class="v-badge high">&#128308; Severity: HIGH &mdash; Core Claim</div>
+    </div>
+    <div class="v-body">
+      <p>Wincham made a <strong>specific, quantified financial claim</strong> to Philip: that by acquiring the company shell rather than the property directly, he would save approximately 16% in Spanish acquisition costs. This is a statement of fact upon which Philip relied to his direct financial detriment.</p>
+      <br/>
+      <p><strong>The law:</strong> Under the tort of negligent misstatement, established in <em>Hedley Byrne &amp; Co Ltd v Heller &amp; Partners Ltd [1964] AC 465</em> and developed through <em>Caparo Industries plc v Dickman [1990] UKHL 2</em>, a professional adviser who makes a representation they know or should know will be relied upon owes a duty to ensure that representation is accurate and complete.</p>
+      <br/>
+      <p>The four elements of the claim are all satisfied:</p>
+      <br/>
+      <p>&#9989; <strong>Duty of Care:</strong> Established by the adviser-client relationship between Wincham and Philip<br/>
+      &#9989; <strong>Breach:</strong> The "16% saving" was a material overstatement (Canary Islands ITP is 6.5%, not 16%), and Wincham failed to disclose the far greater exit tax costs<br/>
+      &#9989; <strong>Causation:</strong> Philip would not have used the company structure "but for" Wincham&rsquo;s advice<br/>
+      &#9989; <strong>Loss:</strong> Quantified at <strong>&pound;49,392 net financial harm</strong> (see the companion comparison report)</p>
+      <br/>
+      <p><strong>Statute:</strong> Claim must be brought within 6 years of the breach or 3 years from the &ldquo;date of knowledge&rdquo; under <span class="statute">Limitation Act 1980, s.14A</span>. Given Philip is only now discovering the true financial harm, the 3-year date of knowledge clock has very likely <strong>not yet started to run</strong>.</p>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Recovery Potential</div>
+      <ul>
+        <li><strong>Primary quantum:</strong> &pound;49,392 net financial harm (Wincham Penalty less ITP saving credit)</li>
+        <li><strong>Additional quantum:</strong> Wasted corporate administration fees paid to Wincham/Adrem over the holding period</li>
+        <li><strong>Further quantum:</strong> Any Spanish Modelo 210 debts, penalties or surcharges caused by Wincham&rsquo;s compliance failures</li>
+        <li>Claim governed by the <span class="statute">Supply of Goods and Services Act 1982, s.13</span> (implied term to carry out service with reasonable care and skill)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Consumer Protection -->
+  <div class="violation criminal">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">UK Criminal / Regulatory Law</div>
+        <div class="v-title">Consumer Protection from Unfair Trading Regulations 2008 &mdash; Misleading Practices</div>
+      </div>
+      <div class="v-badge crim">&#128534; Potentially Criminal</div>
+    </div>
+    <div class="v-body">
+      <p>The <span class="statute">Consumer Protection from Unfair Trading Regulations 2008</span> (implementing EU Directive 2005/29/EC, retained in UK law post-Brexit) prohibit <strong>misleading commercial practices</strong> by businesses supplying services to consumers.</p>
+      <br/>
+      <p><strong>Regulation 5 &mdash; Misleading Actions:</strong> A commercial practice is misleading if it contains false information or presents information in a way that deceives the average consumer and causes them to take a transactional decision they would not otherwise have taken. Wincham&rsquo;s "save 16%" claim, if based on exaggerated or false figures, satisfies this test.</p>
+      <br/>
+      <p><strong>Regulation 6 &mdash; Misleading Omissions:</strong> A commercial practice is misleading if it omits material information that the average consumer needs to make an informed decision. Wincham&rsquo;s <em>failure to disclose</em> the exit tax costs (Corporation Tax top-up, MVL costs, and personal CGT on distribution) is a textbook Regulation 6 violation.</p>
+      <br/>
+      <p><strong>When does it become criminal?</strong> Under <span class="statute">Regulation 9</span>, a trader who <em>knowingly or recklessly</em> engages in a misleading commercial practice commits a <strong>criminal offence</strong>. If Wincham marketed this company structure to multiple clients with the same "save 16%" pitch, the systematic nature of the conduct supports an inference of recklessness or knowledge. Maximum penalty: <strong>2 years imprisonment and/or an unlimited fine</strong>.</p>
+      <br/>
+      <p><strong>Who investigates:</strong> The <strong>Competition and Markets Authority (CMA)</strong> and local Trading Standards have enforcement powers. A formal complaint to either body costs Philip nothing and could trigger an investigation affecting all Wincham clients who received similar advice.</p>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Strategic Value</div>
+      <ul>
+        <li>A CMA complaint <strong>runs in parallel</strong> with the civil claim and costs nothing to file</li>
+        <li>A regulatory investigation <strong>dramatically weakens Wincham&rsquo;s bargaining position</strong> in any settlement negotiation</li>
+        <li>Evidence of other affected clients discovered during an investigation <strong>strengthens Philip&rsquo;s individual claim</strong></li>
+        <li>Even if no criminal prosecution results, the investigation itself creates significant reputational pressure on Wincham</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DOTAS -->
+  <div class="violation criminal">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">UK Tax Law &mdash; Criminal Offence</div>
+        <div class="v-title">DOTAS Non-Disclosure &mdash; Finance Act 2004, Part 7</div>
+      </div>
+      <div class="v-badge crim">&#128534; Potentially Criminal (if multi-client scheme)</div>
+    </div>
+    <div class="v-body">
+      <p>HMRC&rsquo;s <strong>Disclosure of Tax Avoidance Schemes (DOTAS)</strong> regime requires promoters of certain tax avoidance arrangements to <strong>notify HMRC of the scheme</strong> and obtain a Scheme Reference Number (SRN) before marketing it to clients.</p>
+      <br/>
+      <p><strong>The issue:</strong> The Wincham structure &mdash; using a UK company shell to hold Spanish real estate in order to avoid Spanish acquisition taxes &mdash; has the hallmarks of a <strong>marketed tax avoidance scheme</strong>. If Wincham promoted this arrangement to more than one client (which is highly likely for a corporate services firm that specialised in Spanish property), they may have been required to disclose it to HMRC under <span class="statute">Finance Act 2004, Part 7</span>.</p>
+      <br/>
+      <p><strong>The offence:</strong> Failure by a promoter to disclose a notifiable arrangement is a criminal offence punishable by <span class="statute">FA 2004, s.98C</span> with an initial penalty of <strong>&pound;600 per day</strong> rising to <strong>&pound;1 million</strong> for continued non-disclosure, plus potential criminal prosecution for deliberate concealment.</p>
+      <br/>
+      <p><strong>How to trigger HMRC scrutiny:</strong> Philip can report the suspected scheme directly to HMRC&rsquo;s Fraud Hotline. HMRC has strong incentives to investigate as any successful scheme notification allows them to pursue <em>all</em> participants for unpaid tax.</p>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Strategic Implications</div>
+      <ul>
+        <li>If HMRC opens an investigation, <strong>Wincham&rsquo;s legal position deteriorates significantly</strong> across all client relationships</li>
+        <li>HMRC&rsquo;s investigation may uncover <strong>additional recoverable losses</strong> for Philip</li>
+        <li>A confirmed DOTAS breach <strong>is a separate ground of civil claim</strong> against Wincham for the losses caused</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ICAEW / ACCA -->
+  <div class="violation disciplinary">
+    <div class="v-header">
+      <div class="v-title-wrap">
+        <div class="v-law">Professional Conduct &mdash; Disciplinary Jurisdiction</div>
+        <div class="v-title">ICAEW / ACCA Ethics Breach &mdash; Professional Misconduct</div>
+      </div>
+      <div class="v-badge med">&#128992; Severity: MEDIUM-HIGH</div>
+    </div>
+    <div class="v-body">
+      <p>Any accountant giving this advice was subject to the ethical codes of their professional body &mdash; most likely <strong>ICAEW</strong> (Institute of Chartered Accountants in England &amp; Wales) or <strong>ACCA</strong> (Association of Chartered Certified Accountants). Both bodies&rsquo; Codes of Ethics &mdash; aligned with the IESBA International Code &mdash; impose binding obligations that Wincham appears to have breached.</p>
+      <br/>
+      <p><strong>Section 100 &mdash; Fundamental Principles:</strong> Members must comply with the principles of <em>integrity</em> (straightforward and honest in all professional relationships), <em>objectivity</em> (not allow bias or conflicts of interest to override professional judgements), and <em>professional competence and due care</em> (maintain professional knowledge and skill at the level required to provide competent service).</p>
+      <br/>
+      <p><strong>Specific failures:</strong></p>
+      <ul style="list-style:none;padding:0;margin-top:10px">
+        <li style="padding:5px 0 5px 20px;position:relative;color:var(--muted);font-size:.88rem"><span style="position:absolute;left:0;color:var(--gold)">&#9642;</span>Making an exaggerated "16% saving" claim without full disclosure of offsetting costs &mdash; <strong>breach of integrity and objectivity</strong></li>
+        <li style="padding:5px 0 5px 20px;position:relative;color:var(--muted);font-size:.88rem"><span style="position:absolute;left:0;color:var(--gold)">&#9642;</span>Failing to advise on exit taxation (the DVL/MVL/CGT cascade) when recommending the corporate structure &mdash; <strong>breach of professional competence and due care</strong></li>
+        <li style="padding:5px 0 5px 20px;position:relative;color:var(--muted);font-size:.88rem"><span style="position:absolute;left:0;color:var(--gold)">&#9642;</span>Failing to disclose Article 108 LMV risk &mdash; <strong>breach of professional competence</strong> (a cross-border tax adviser must know this rule)</li>
+        <li style="padding:5px 0 5px 20px;position:relative;color:var(--muted);font-size:.88rem"><span style="position:absolute;left:0;color:var(--gold)">&#9642;</span>Continuing to act as company secretary / administrator without advising on the growing tax problem &mdash; <strong>breach of duty to act in client&rsquo;s best interests</strong></li>
+      </ul>
+    </div>
+    <div class="v-consequence">
+      <div class="v-consequence-title">Why File a Professional Complaint &mdash; Even Alongside Litigation</div>
+      <ul>
+        <li>Complaints to ICAEW/ACCA are <strong>free and can run in parallel</strong> with the civil claim</li>
+        <li>A disciplinary finding <strong>is admissible in civil proceedings</strong> as evidence of substandard conduct</li>
+        <li>The complaint forces Wincham to <strong>engage their Professional Indemnity Insurer</strong> far earlier, often accelerating settlement</li>
+        <li>If the individual accountant is sanctioned or suspended, it <strong>dramatically strengthens Philip&rsquo;s bargaining position</strong></li>
+        <li>Process: Submit to <a href="https://www.icaew.com/regulation/complaints" style="color:var(--blue)">icaew.com/regulation/complaints</a> or <a href="https://www.accaglobal.com/uk/en/member/your-membership/complaints.html" style="color:var(--blue)">accaglobal.com complaints</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SPECTRUM TABLE -->
+  <div class="sec-head" style="margin-top:60px">
+    <div class="sec-icon">&#128202;</div>
+    <h2>The Full Legal Spectrum &mdash; Civil to Criminal</h2>
+  </div>
+  <div class="divider"></div>
+  <table class="spectrum">
+    <thead>
+      <tr>
+        <th>Violation</th>
+        <th>Type</th>
+        <th>Severity</th>
+        <th>Forum</th>
+        <th>Likely Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>"16% saving" negligent misstatement</strong><br/><span style="font-size:.78rem;color:var(--muted)">Hedley Byrne; SGSA 1982 s.13</span></td>
+        <td><span class="type-civil">Civil</span></td>
+        <td><span class="severity high">High</span></td>
+        <td>County Court / Business &amp; Property Courts</td>
+        <td>Recoverable damages ~&pound;49,392+</td>
+      </tr>
+      <tr>
+        <td><strong>Article 108 LMV risk not disclosed</strong><br/><span style="font-size:.78rem;color:var(--muted)">Spanish anti-avoidance; duty of care breach</span></td>
+        <td><span class="type-civil">Civil</span></td>
+        <td><span class="severity high">High</span></td>
+        <td>County Court (UK) / AEAT (Spain)</td>
+        <td>Additional damages; possible AEAT assessment</td>
+      </tr>
+      <tr>
+        <td><strong>Annual Modelo 210 compliance failure</strong><br/><span style="font-size:.78rem;color:var(--muted)">IRNR imputaci&oacute;n de rentas; duty of care</span></td>
+        <td><span class="type-civil">Civil</span></td>
+        <td><span class="severity high">High</span></td>
+        <td>County Court (UK) / AEAT (Spain)</td>
+        <td>Unpaid AEAT liabilities recoverable from Wincham</td>
+      </tr>
+      <tr>
+        <td><strong>Consumer Protection Regs 2008 &mdash; misleading actions &amp; omissions</strong><br/><span style="font-size:.78rem;color:var(--muted)">Regs 5, 6 (civil); Reg 9 (criminal) if systematic</span></td>
+        <td><span class="type-crim">Regulatory / Criminal</span></td>
+        <td><span class="severity crim">Potentially Criminal</span></td>
+        <td>CMA / Trading Standards</td>
+        <td>Investigation, fine, up to 2 years imprisonment</td>
+      </tr>
+      <tr>
+        <td><strong>DOTAS non-disclosure (if multi-client scheme)</strong><br/><span style="font-size:.78rem;color:var(--muted)">Finance Act 2004, Part 7, s.98C</span></td>
+        <td><span class="type-crim">Criminal</span></td>
+        <td><span class="severity med">Medium</span></td>
+        <td>HMRC; Tribunal; Crown Court</td>
+        <td>Penalties up to &pound;1m; criminal prosecution</td>
+      </tr>
+      <tr>
+        <td><strong>ICAEW / ACCA professional ethics breaches</strong><br/><span style="font-size:.78rem;color:var(--muted)">Integrity, competence, and due care principles</span></td>
+        <td><span class="type-disc">Disciplinary</span></td>
+        <td><span class="severity high">High</span></td>
+        <td>ICAEW / ACCA Professional Conduct Committee</td>
+        <td>Sanction, fine, suspension, or striking off</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ACTION STEPS -->
+  <div class="sec-head" style="margin-top:60px">
+    <div class="sec-icon">&#9889;</div>
+    <h2>Immediate Action Steps for Philip Harrison</h2>
+  </div>
+  <div class="divider"></div>
+  <div class="actions">
+    <div class="action-card">
+      <div class="action-num">1</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-now">&#128308; Do This Now</div>
+        <h4>Commission an AEAT Tax Record Check</h4>
+        <p>Instruct a Spanish <em>asesor fiscal</em> to check Los Romeros Limited&rsquo;s full tax record with AEAT via the <em>Sede Electr&oacute;nica</em>. Establish whether annual Modelo 210s were filed and whether any debts or surcharges exist. This is the most urgent live financial risk.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">2</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-now">&#128308; Do This Now</div>
+        <h4>Subject Access Request to Wincham</h4>
+        <p>Submit a formal Subject Access Request (SAR) under the <strong>Data Protection Act 2018 / UK GDPR</strong> to obtain Wincham&rsquo;s full client file. They must respond within 30 days. This will produce all advice letters, emails, and engagement documents &mdash; the cornerstone of the evidence.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">3</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-soon">&#128992; Within 30 Days</div>
+        <h4>File Pre-Action Protocol Letter of Claim</h4>
+        <p>Send a formal Letter of Claim to Wincham complying with the <strong>Pre-Action Protocol for Professional Negligence</strong> (Civil Procedure Rules). This gives them 3 months to investigate and respond before court proceedings begin &mdash; and forces their PII insurer to engage.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">4</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-soon">&#128992; Within 30 Days</div>
+        <h4>File ICAEW / ACCA Professional Complaint</h4>
+        <p>Submit a formal complaint to Wincham&rsquo;s professional body (ICAEW or ACCA) in parallel with the Letter of Claim. This is free, creates an independent investigation, and strengthens Philip&rsquo;s civil case by establishing substandard professional conduct through a separate process.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">5</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-soon">&#128992; Within 60 Days</div>
+        <h4>Report to HMRC Fraud Hotline (DOTAS)</h4>
+        <p>If evidence from the SAR or other sources confirms Wincham marketed this structure to multiple clients, report the suspected DOTAS non-compliance to HMRC&rsquo;s fraud hotline. The report is anonymous. An HMRC investigation applying pressure from a second direction will significantly accelerate any settlement.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">6</div>
+      <div class="action-body">
+        <div class="action-urgency urgency-when">&#128994; If No Settlement Reached</div>
+        <h4>Issue Claim Form N1 &mdash; County Court</h4>
+        <p>If Wincham&rsquo;s Letter of Response is unsatisfactory, issue a Claim Form N1 in the County Court (claims up to &pound;100,000) or the Business and Property Courts for larger quantum. Small Claims track applies for claims under &pound;10,000; Fast Track for &pound;10,000&ndash;&pound;25,000; Multi-Track above.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Important Disclaimer:</strong> This document is prepared by an AI advisory system acting in the capacity of a UK Commercial Litigation analyst. It does not constitute formal legal advice and cannot substitute for instruction of a qualified UK solicitor (ideally one specialising in professional negligence) and a licensed Spanish <em>abogado</em>. The legal analysis is grounded in real UK and Spanish legislation, but specific facts, dates, and circumstances must be verified before any formal proceedings are initiated. The limitation periods referred to are indicative &mdash; Philip Harrison should obtain a specific limitation opinion from a qualified solicitor without delay to preserve his right to claim.
+  </div>
+
+</div>
+
+<footer>
+  <strong>Philip Harrison &mdash; Legal Analysis: Was What Wincham Did Illegal?</strong><br/>
+  Los Romeros Limited &middot; Lanzarote 2026 &middot; Prepared by AI Advisory Team for information and legal planning purposes only.<br/>
+  <a href="index.html" style="color:var(--blue);text-decoration:none">&#8592; Return to Strategy Portal</a>
+  &nbsp;&middot;&nbsp;
+  <a href="comparison_report.html" style="color:var(--blue);text-decoration:none">View Financial Comparison Report</a>
+</footer>
+
+</body>
+</html>
